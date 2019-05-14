@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TAKMIL Attendance</string>
+    <string name="title_activity_upload_photo">uploadPhoto</string>
+</resources>
