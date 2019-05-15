@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <TextView
         android:id="@+id/school_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter School Name"
+        android:text="School Name"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
@@ -35,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Enter Teacher Name"
+        android:text="Teacher Name"
         android:textSize="24dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/school_name"
@@ -60,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
-        android:text="Enter Class Name"
+        android:text="Class Name"
         android:textSize="24dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/teacher_name"
