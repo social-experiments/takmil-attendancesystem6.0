@@ -1,12 +1,14 @@
 package com.example.takmil;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -20,6 +22,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -97,6 +100,7 @@ public class uploadPhoto extends AppCompatActivity
     String cityStr;
     String countryStr;
     String postalcodeStr;
+    String imageFilePath;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -130,18 +134,35 @@ public class uploadPhoto extends AppCompatActivity
         ntkLocation=appLocationService.getLocation(LocationManager.NETWORK_PROVIDER);
 
         //If gps is enabled then do the action's below
-        if(gpsLocation!=null)
+        if(gpsLocation!=null ||ntkLocation!=null)
         {
             takePhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
-
+                    //Creating a internal file , then fileprovider uses the file's uri to load the full sized bitmap in teh file rather than loading it in memory.
+                    File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                    if (!storageDir.exists())
+                        storageDir.mkdirs();
+                    imageFilePath = storageDir.getAbsolutePath() + "/camera_photo.jpg";
+                    File imageFile = new File(imageFilePath);
                     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                        configureLocation();
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+                    {
 
+                        String authorities=getPackageName();
+                        try {
+
+                            Context c = getApplicationContext();
+                            Uri imageUri = FileProvider.getUriForFile(c, authorities, imageFile);
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                            configureLocation();
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
@@ -179,6 +200,7 @@ public class uploadPhoto extends AppCompatActivity
 
         }
     }
+
 
     private void configureLocation()
     {
@@ -314,26 +336,47 @@ public class uploadPhoto extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         //if the image is captured successfully
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            //scale the picture
-            //TODO: scaling sucks. picture looks blocky after. need to fix.
-            Bitmap scaledPhoto = Bitmap.createScaledBitmap(photo, 900, 1200, true);
-            //Bitmap scaledPhoto = photo;
-            imageView.setImageBitmap(scaledPhoto);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
+        {
 
-            if (isExternalStorageWritable()) {
+            //Getting the size of the imageView control for scaling
+            int imageViewWidth=imageView.getWidth();
+            int imageViewHeight=imageView.getHeight();
+
+            //Trying get the width and height of bitmap without loading in memory by setting inJustDecodeBounds=true
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds=true;
+
+            int bitmapWidth=bmOptions.outWidth;
+            int bitmapHeight=bmOptions.outHeight;
+
+            //The sample size is the number of pixels in either dimension that correspond to a single pixel in the decoded bitmap.
+            // For example, inSampleSize == 4 returns an image that is 1/4 the width/height of the original
+            int scaleFactor=Math.min(bitmapWidth/imageViewWidth,bitmapHeight/imageViewHeight);
+            bmOptions.inSampleSize=scaleFactor;
+
+            //Finally we are loading the scaled bitmap into memory
+            bmOptions.inJustDecodeBounds=false;
+
+            Bitmap bmpImage = BitmapFactory.decodeFile(imageFilePath,bmOptions);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(imageFilePath,bmOptions));
+
+            if (isExternalStorageWritable())
+            {
                 System.out.print("saving image");
-                saveImage(scaledPhoto);
-            } else {
+                saveImage(bmpImage);
+            }
+            else
+                {
+                    toast = Toast.makeText(getApplicationContext(), "Not Able to save", Toast.LENGTH_LONG);
+                    toast.show();
                 //prompt the user or do something
             }
         }
     }
 
-    private void saveImage(Bitmap finalBitmap) {
+    private void saveImage(Bitmap  finalBitmap) {
 
-        System.out.print("saving image now");
         String root = Environment.getExternalStorageDirectory().toString();
         System.out.print("FILEPATH::" + root);
         File myDir = new File(root + "/saved_images");
@@ -347,11 +390,15 @@ public class uploadPhoto extends AppCompatActivity
         String filePath = myDir + "\\" + fname;
         filePath.replaceAll("\\\\", "/");
         photoFile = new File(myDir, fname);
+
         try {
+
             FileOutputStream out = new FileOutputStream(photoFile);
+
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
