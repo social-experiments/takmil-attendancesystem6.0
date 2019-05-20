@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -21,6 +23,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -102,6 +105,9 @@ public class uploadPhoto extends AppCompatActivity
     String postalcodeStr;
     String imageFilePath;
 
+    //to check whether any bitmap is saved in imageview
+    Boolean imageTaken=false;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -170,25 +176,39 @@ public class uploadPhoto extends AppCompatActivity
 
 
             Button uploadPhoto = (Button) this.findViewById(R.id.upload);
-            uploadPhoto.setOnClickListener(new View.OnClickListener() {
+            uploadPhoto.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
-                    UploadFileTask uploadFileTask = new UploadFileTask();
-                    uploadFileTask.execute();
+                public void onClick(View v)
+                {
 
-                /*
-                this toast is displayed whenever the upload button is pressed,
-                regardless of whether the image was uploaded successfully or not.
-                need to set up exception detection in order to detect upload failures.
-                */
-                    Context context = getApplicationContext();
-                    CharSequence text = "Upload successful!";
-                    int duration = Toast.LENGTH_SHORT;
 
-                    toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    if(imageTaken == true)
+                    {
+                        UploadFileTask uploadFileTask = new UploadFileTask();
+                        uploadFileTask.execute();
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "Upload successful!";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    else
+                    {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Please click a photo before uploading.....";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                    }
+
 
                 }
+
             });
 
             //uploadFileTask.execute();
@@ -200,6 +220,7 @@ public class uploadPhoto extends AppCompatActivity
 
         }
     }
+
 
 
     private void configureLocation()
@@ -360,6 +381,8 @@ public class uploadPhoto extends AppCompatActivity
 
             Bitmap bmpImage = BitmapFactory.decodeFile(imageFilePath,bmOptions);
             imageView.setImageBitmap(BitmapFactory.decodeFile(imageFilePath,bmOptions));
+
+            imageTaken=true;
 
             if (isExternalStorageWritable())
             {
