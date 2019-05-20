@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     AppLocationService appLocationService;
     Location ntkLocation;
     Location gpsLocation;
-    Toast toast1;
-    Toast toast2;
+    Toast toast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,25 +49,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 String strSchoolName = schoolName.getText().toString();
                 String strTeacherName = teacherName.getText().toString();
                 String strClassName = className.getText().toString();
 
 
-                //Store the Records in SharedPreferences
-                myEditor.putString("SCHOOL_NAME", strSchoolName);
-                myEditor.putString("TEACHER_NAME", strTeacherName);
-                myEditor.putString("CLASS_NAME", strClassName);
-                myEditor.commit();
+
+                if(strSchoolName.trim().length() > 0  && strClassName.trim().length() > 0 && strTeacherName.trim().length() > 0)
+                {
 
 
-                //store the text fields into strings, and start the next page activitiy
-                Intent intent = new Intent(MainActivity.this, uploadPhoto.class);
-                intent.putExtra("schoolName", strSchoolName);
-                intent.putExtra("teacherName", strTeacherName);
-                intent.putExtra("className", strClassName);
+                    //Store the Records in SharedPreferences
+                    myEditor.putString("SCHOOL_NAME", strSchoolName);
+                    myEditor.putString("TEACHER_NAME", strTeacherName);
+                    myEditor.putString("CLASS_NAME", strClassName);
+                    myEditor.commit();
 
-                startActivity(intent);
+
+                    //store the text fields into strings, and start the next page activitiy
+                    Intent intent = new Intent(MainActivity.this, uploadPhoto.class);
+                    intent.putExtra("schoolName", strSchoolName);
+                    intent.putExtra("teacherName", strTeacherName);
+                    intent.putExtra("className", strClassName);
+
+                    startActivity(intent);
+                }
+                else
+                {
+                    toast =Toast.makeText(getApplicationContext(),"The School Name, Class Name, Teacher Name are all mandatory fields",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
             }
 
         });
