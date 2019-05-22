@@ -16,6 +16,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -54,8 +55,10 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 import java.security.InvalidKeyException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -107,6 +110,7 @@ public class uploadPhoto extends AppCompatActivity
 
     //to check whether any bitmap is saved in imageview
     Boolean imageTaken=false;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -185,33 +189,48 @@ public class uploadPhoto extends AppCompatActivity
 
                     if(imageTaken == true)
                     {
-                        UploadFileTask uploadFileTask = new UploadFileTask();
-                        uploadFileTask.execute();
+                        Boolean isInternet = isNetworkAvailable(getApplicationContext());
+                        if(isInternet==true)
+                        {
 
-                        Context context = getApplicationContext();
-                        CharSequence text = "Upload successful!";
-                        int duration = Toast.LENGTH_SHORT;
+                            UploadFileTask uploadFileTask = new UploadFileTask();
+                            uploadFileTask.execute();
 
-                        toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                            Context context = getApplicationContext();
+                            CharSequence text = "Upload successful!";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                            finish();
+
+                        }
+                        else
+                        {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Upload not possible,check network connectivity";
+                            int duration = Toast.LENGTH_SHORT;
+                            toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                        }
+
                     }
                     else
                     {
                         Context context = getApplicationContext();
-                        CharSequence text = "Please click a photo before uploading.....";
+                        CharSequence text = "Please click a photo before uploading...";
                         int duration = Toast.LENGTH_SHORT;
 
                         toast = Toast.makeText(context, text, duration);
                         toast.show();
 
                     }
-
-
                 }
 
             });
 
-            //uploadFileTask.execute();
+
         }
         else
         {
@@ -221,6 +240,11 @@ public class uploadPhoto extends AppCompatActivity
         }
     }
 
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
 
 
     private void configureLocation()
@@ -450,12 +474,14 @@ public class uploadPhoto extends AppCompatActivity
     class UploadFileTask extends AsyncTask<String, Void, Void> {
 
         URI uploadPhoto() {
+
             URI photoUri = null;
             try {
                 // Parse the connection string and create a blob client to interact with Blob storage
                 CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
                 CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
                 CloudBlobContainer container = blobClient.getContainerReference("takmilphoto");
+
 
                 // Create the container if it does not exist with public access.
                 System.out.println("Creating container: " + container.getName());
@@ -472,6 +498,11 @@ public class uploadPhoto extends AppCompatActivity
                 blob.upload(new FileInputStream(photoFile), photoFile.length());
                 System.out.println("Uploaded the sample photo ");
                 photoUri = blob.getUri();
+
+
+
+
+
 
                 //upload successful toast
 
@@ -501,9 +532,13 @@ public class uploadPhoto extends AppCompatActivity
 
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Void result)
+        {
             super.onPostExecute(result);
+
         }
+
+
 
         @Override
         protected Void doInBackground(String... params) {
@@ -530,14 +565,6 @@ public class uploadPhoto extends AppCompatActivity
                 String className = info_intent.getStringExtra("className");
                 String teacherName = info_intent.getStringExtra("teacherName");
 
-
-                String locationProvider = LocationManager.NETWORK_PROVIDER;
-// Or use LocationManager.GPS_PROVIDER
-
-                //String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-                //requestPermissions(permissions, ACCESS_FINE_LOCATION_CODE);
-                //Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-
                 //define the json. TODO: implement real latlong
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("location", areaStr);
@@ -562,6 +589,9 @@ public class uploadPhoto extends AppCompatActivity
                 //Creating blob and uploading file to it
                 System.out.println("Uploading the sample file ");
                 blob.uploadFromFile(sourceFile.getAbsolutePath());
+
+
+
             } catch (StorageException ex) {
                 System.out.println(String.format("Error returned from the service. Http code: %d and error code: %s", ex.getHttpStatusCode(), ex.getErrorCode()));
             } catch (IOException e) {
