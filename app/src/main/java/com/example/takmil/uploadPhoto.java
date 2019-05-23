@@ -77,6 +77,7 @@ public class uploadPhoto extends AppCompatActivity
     Bitmap photo;
     Geocoder geocoder;
     List<Address> addressList;
+    
     AppLocationService appLocationService;
     Location ntkLocation;
     Location gpsLocation;
