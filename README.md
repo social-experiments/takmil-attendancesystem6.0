@@ -29,9 +29,9 @@
         * You need internet connectivity to download and upload your information 
         in the app.
 
-        * You need to ON your GPS ,the app uses your gps to track your location.
+        * You need to ON your GPS ,the app uses gps to track your location.
 
-        * The app is not installed in Google playStore yet, So the app will 
+        * The app is not added in Google playStore yet, So the app will 
         be considered  anonymous by your phone. 
         The phone will give warning before installing the app, You have to go 
         ahead and do it anyway.
@@ -78,7 +78,6 @@
 <img src="Image\next.png" width="200" height="400">
 
    Step 3:
-
         When you work with this app for the first time , the app request's user 
         for various access like location,photos,storage etc . 
 
