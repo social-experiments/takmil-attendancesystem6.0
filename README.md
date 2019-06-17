@@ -117,7 +117,7 @@
 <img src="Image\uploadsuccess.png" width="200" height="400">
 
     Step 8:
-        Close your Takmil App. Good Job...
+        Close your Takmil App. Good Job!!!
 
         
 
