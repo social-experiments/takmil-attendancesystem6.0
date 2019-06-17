@@ -1,8 +1,12 @@
+
 # Takmil Attendance System
 
 ## 1.App Overview:<br/>    
 
-        Takmil App is created to save , process and maintain the attendence of children in school's. The app request's the user to enter the school , class , grade information and then proceeds with class photo that is taken through the camera in the app. After getting all the information , it stores them in Azure cloud and does image processing on the photo. Later on it transform's those data into stunning visuals using Microsoft Power BI.
+        Takmil App is created to save , process and maintain the attendence of children in schools. 
+        The app requests the user to enter the school , class , grade information and then proceeds with class photo that is taken through the camera in the app. 
+        After getting all the information , it stores them in Azure cloud and does image processing on the photo. 
+        Later on it transform's those data into stunning visuals using Microsoft Power BI.
 
 ## 2.App Location:<br/>
 
@@ -20,7 +24,7 @@
 
         * The app is not installed in Google playStore yet, So the app will be considered  anonymous by your phone. The phone will give warning before installing the app, You have to go ahead and do it anyway.
 
-        * While your are running the app for the first time , the app request's user for various access like location,photos,storage etc. You have to accept all.
+        * While your are running the app for the first time , the app requests user for various access like location,photos,storage etc. You have to accept all.
 
         * Your phone should have a camera in it.
 
@@ -37,7 +41,8 @@
 <img src="Image\install2.png" width="200" height="400">
 
     Step 3:
-        Now you have downloaded the takmil app in yout phone. The Takmil Application Icon looks like this  
+        Now you have downloaded the takmil app in yout phone. 
+        The Takmil Application Icon looks like this  
 
 <img src="Image\appicon.png" width="200" height="400">
 
@@ -52,12 +57,14 @@
     Step 2:
         Please enter your School Name , Teacher Name , Class Name and click NEXT Button. Note all the fields are * Mandatory here. That means if you dont specify all of them you can't proceed to next activity in the app.
 
-<img src="Image\mandatory.png" width="200" height="400">
+<img src="Image\man.png" width="200" height="400">
 <img src="Image\next.png" width="200" height="400">
 
    Step 3:
 
-        When you work with this app for the first time , the app request's user for various access like location,photos,storage etc . Please click ALLOW for all request's ,then only you will be able to move on to the next activity. Remember the access granting will only happen when you run the app for the very first time.
+        When you work with this app for the first time , the app request's user for various access like location,photos,storage etc . 
+        Please click ALLOW for all requests ,then only you will be able to move on to the next activity.
+        Remember the access granting will only happen when you run the app for the very first time.
 
 <img src="Image\access1.png" width="200" height="400">
 <img src="Image\access2.png" width="200" height="400">
