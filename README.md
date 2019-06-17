@@ -78,6 +78,7 @@
 <img src="Image\next.png" width="200" height="400">
 
    Step 3:
+   
         When you work with this app for the first time , the app request's user 
         for various access like location,photos,storage etc . 
 
