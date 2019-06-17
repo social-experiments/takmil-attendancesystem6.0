@@ -1,2 +1,93 @@
-# takmil-attendancesystem6.0
-Takmil Attendance System for Version 6.0
+# Takmil Attendance System
+
+## 1.App Overview:<br/>    
+
+        Takmil App is created to save , process and maintain the attendence of children in school's. The app request's the user to enter the school , class , grade information and then proceeds with class photo that is taken through the camera in the app. After getting all the information , it stores them in Azure cloud and does image processing on the photo. Later on it transform's those data into stunning visuals using Microsoft Power BI.
+
+## 2.App Location:<br/>
+
+        The App's APK is stored inside the cloud and can be downloaded from the below link 
+
+        http://bit.ly/TakmilApp
+
+## 3.App Requirements:<br/>
+
+        * This app will only run on "Android 6.0 and above". So if have lesser version of android phone this app will not work.
+
+        * You need internet connectivity to download and upload your information in the app.
+
+        * You need to ON your GPS ,the app uses your gps to track your location.
+
+        * The app is not installed in Google playStore yet, So the app will be considered  anonymous by your phone. The phone will give warning before installing the app, You have to go ahead and do it anyway.
+
+        * While your are running the app for the first time , the app request's user for various access like location,photos,storage etc. You have to accept all.
+
+        * Your phone should have a camera in it.
+
+
+## 4.App Installation:<br/>
+
+    Step 1:
+        Please click the app's download link and download the app.
+
+    Step 2:
+        After clicking the link , press INSTALL Button 
+                
+<img src="Image\install1.png" width="200" height="400">
+<img src="Image\install2.png" width="200" height="400">
+
+    Step 3:
+        Now you have downloaded the takmil app in yout phone. The Takmil Application Icon looks like this  
+
+<img src="Image\appicon.png" width="200" height="400">
+
+
+## 5.App Usage:<br/>
+
+    Step 1:
+        Click the Takmil Icon, the app will open with the info page
+
+<img src="Image\appfirst.png" width="200" height="400">
+
+    Step 2:
+        Please enter your School Name , Teacher Name , Class Name and click NEXT Button. Note all the fields are * Mandatory here. That means if you dont specify all of them you can't proceed to next activity in the app.
+
+<img src="Image\mandatory.png" width="200" height="400">
+<img src="Image\next.png" width="200" height="400">
+
+   Step 3:
+
+        When you work with this app for the first time , the app request's user for various access like location,photos,storage etc . Please click ALLOW for all request's ,then only you will be able to move on to the next activity. Remember the access granting will only happen when you run the app for the very first time.
+
+<img src="Image\access1.png" width="200" height="400">
+<img src="Image\access2.png" width="200" height="400">
+
+    Step 4:
+        Now you are all ready to get the class phototaken. When you are ready please press the TAKE PHOTO Button.
+
+<img src="Image\upload.png" width="200" height="400">
+
+    Step 5:
+        If you wish not to take any photo and press UPLOAD Button , the app will not allow you to upload your information.
+
+<img src="Image\update1.png" width="200" height="400">
+
+    Step 6:
+        Proceed to click your photo. 
+        Press "TICK" to accept the photo ,  if you want to retake your photo press "REFRESH" or if you dont want to take any photo press "CROSS".
+
+<img src="Image\update2.png" width="200" height="400">
+<img src="Image\update3.png" width="200" height="400">
+
+    Step 7:
+        Finally your ready for uploading.... Go ahead and press UPLOAD Button.
+
+<img src="Image\uploadsuccess.png" width="200" height="400">
+
+    Step 8:
+        Close your Takmil App. Good Job...
+
+        
+
+
+
