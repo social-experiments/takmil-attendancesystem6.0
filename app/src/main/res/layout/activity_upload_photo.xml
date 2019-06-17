@@ -30,11 +30,12 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="80dp"
         android:src="@drawable/ic_launcher_foreground" />
+
     <Button
         android:id="@+id/button_takePhoto"
-        android:layout_width="wrap_content"
+        android:layout_width="184dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="500dp"
         android:text="Take Photo"
         android:textSize="30dp"
         app:layout_constraintHorizontal_bias="0.501"
@@ -44,10 +45,10 @@
 
     <Button
         android:id="@+id/upload"
-        android:layout_width="wrap_content"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="202dp"
         android:layout_marginTop="520dp"
-        android:layout_marginLeft="250dp"
         android:text="Upload"
         android:textSize="30dp"
         app:layout_constraintLeft_toRightOf="@+id/button_takePhoto"
