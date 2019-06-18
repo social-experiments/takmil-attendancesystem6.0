@@ -55,7 +55,7 @@
 <img src="Image\install2.png" width="200" height="400">
 
     Step 3:
-        Now you have downloaded the takmil app in yout phone. 
+        Now you have downloaded the takmil app in your phone. 
         The Takmil Application Icon looks like this  
 
 <img src="Image\appicon.png" width="200" height="400">
