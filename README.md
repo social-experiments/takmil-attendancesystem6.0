@@ -55,6 +55,13 @@
 <img src="Image\install2.png" width="200" height="400">
 
     Step 3:
+        Sometimes the phone won't allow to install the app for 
+        security reasons,if so please go to SETTINGS 
+        SECURITY => Enable Unknown Resources
+
+<img src="Image\image.jpg" width="200" height="400">
+
+    Step 4:
         Now you have downloaded the takmil app in your phone. 
         The Takmil Application Icon looks like this  
 
