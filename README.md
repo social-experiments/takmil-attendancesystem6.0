@@ -78,7 +78,8 @@ Step 4:
 
         * Disable notifications related to Google Play Protect.  
 
-            On Android >= 8.Settings => Apps => Google Play 
+            On Android phone  >= 8 version only.
+            Settings => Apps => Google Play 
             Store => Notifications => High priority => Turn OFF 
 
  <img src="Image\PlayProtect5.png" width="200" height="400"> 
