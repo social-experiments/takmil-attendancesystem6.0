@@ -45,8 +45,10 @@
 
 ## 4.App Installation:<br/>
 
-    Step 1:
+    Step 1:    
         Please click the app's download link and download the app.
+
+        http://bit.ly/TakmilApp
 
     Step 2:
         After clicking the link , press INSTALL Button 
@@ -61,7 +63,31 @@
 
 <img src="Image\image.jpg" width="200" height="400">
 
-    Step 4:
+Step 4:
+
+        * Disable Google Play Protect.
+
+            Open "Play Store" application => Tap on Menu
+            button => Select "Play Protect" => Select 
+            "Settings icon" => Disable "Scan device for security threats".
+
+ <img src="Image\PlayProtect1.png" width="200" height="400"> 
+ <img src="Image\PlayProtect2.png" width="200" height="400">
+ <img src="Image\PlayProtect3.png" width="200" height="400">
+ <img src="Image\PlayProtect4.png" width="200" height="400">    
+
+        * Disable notifications related to Google Play Protect.  
+
+            On Android >= 8.Settings => Apps => Google Play 
+            Store => Notifications => High priority => Turn OFF 
+
+ <img src="Image\PlayProtect5.png" width="200" height="400"> 
+ <img src="Image\PlayProtect6.png" width="200" height="400">
+ <img src="Image\PlayProtect7.png" width="200" height="400">
+ <img src="Image\PlayProtect8.png" width="200" height="400">
+
+
+    Step 5:
         Now you have downloaded the takmil app in your phone. 
         The Takmil Application Icon looks like this  
 
