@@ -53,8 +53,7 @@
     Step 2:
         After clicking the link , press INSTALL Button 
                 
-<img src="Image\install1.png" width="200" height="400">
-<img src="Image\install2.png" width="200" height="400">
+<img src="Image\install1.png" width="200" height="400">  <img src="Image\install2.png" width="200" height="400">
 
     Step 3:
         Sometimes the phone won't allow to install the app for 
@@ -71,10 +70,8 @@ Step 4:
             button => Select "Play Protect" => Select 
             "Settings icon" => Disable "Scan device for security threats".
 
- <img src="Image\PlayProtect1.png" width="200" height="400"> 
- <img src="Image\PlayProtect2.png" width="200" height="400">
- <img src="Image\PlayProtect3.png" width="200" height="400">
- <img src="Image\PlayProtect4.png" width="200" height="400">    
+ <img src="Image\PlayProtect1.png" width="200" height="400">  <img src="Image\PlayProtect2.png" width="200" height="400">
+ <img src="Image\PlayProtect3.png" width="200" height="400">  <img src="Image\PlayProtect4.png" width="200" height="400">    
 
         * Disable notifications related to Google Play Protect.  
 
@@ -82,10 +79,8 @@ Step 4:
             Settings => Apps => Google Play 
             Store => Notifications => High priority => Turn OFF 
 
- <img src="Image\PlayProtect5.png" width="200" height="400"> 
- <img src="Image\PlayProtect6.png" width="200" height="400">
- <img src="Image\PlayProtect7.png" width="200" height="400">
- <img src="Image\PlayProtect8.png" width="200" height="400">
+ <img src="Image\PlayProtect5.png" width="200" height="400">  <img src="Image\PlayProtect6.png" width="200" height="400">
+ <img src="Image\PlayProtect7.png" width="200" height="400">  <img src="Image\PlayProtect8.png" width="200" height="400">
 
 
     Step 5:
@@ -108,8 +103,7 @@ Step 4:
         That means if you dont specify all of them you can't proceed to 
         next activity in the app.
 
-<img src="Image\man.png" width="200" height="400">
-<img src="Image\next.png" width="200" height="400">
+<img src="Image\man.png" width="200" height="400">  <img src="Image\next.png" width="200" height="400">
 
    Step 3:
    
@@ -122,8 +116,7 @@ Step 4:
         Remember the access granting will only happen when you run the app for 
         the very first time.
 
-<img src="Image\access1.png" width="200" height="400">
-<img src="Image\access2.png" width="200" height="400">
+<img src="Image\access1.png" width="200" height="400">  <img src="Image\access2.png" width="200" height="400">
 
     Step 4:
         Now you are all ready to get the class phototaken. When you are ready please 
@@ -142,8 +135,7 @@ Step 4:
         Press "TICK" to accept the photo , if you want to retake your photo
         press "REFRESH" or if you dont want to take any photo press "CROSS".
 
-<img src="Image\update2.png" width="200" height="400">
-<img src="Image\update3.png" width="200" height="400">
+<img src="Image\update2.png" width="200" height="400">  <img src="Image\update3.png" width="200" height="400">
 
     Step 7:
         Finally your ready for uploading.... Go ahead and press UPLOAD Button.
