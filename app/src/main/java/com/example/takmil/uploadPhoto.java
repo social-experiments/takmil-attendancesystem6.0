@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -16,6 +17,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -239,9 +241,7 @@ public class uploadPhoto extends AppCompatActivity
         }
         else
         {
-            showSettingsAlert("GPS");
-
-
+           showSettingsAlert("GPS");
         }
     }
 
@@ -390,15 +390,15 @@ public class uploadPhoto extends AppCompatActivity
         {
 
             //Getting the size of the imageView control for scaling
-            int imageViewWidth=imageView.getWidth();
-            int imageViewHeight=imageView.getHeight();
+            int imageViewWidth=1024;
+            int imageViewHeight=1024;
 
             //Trying get the width and height of bitmap without loading in memory by setting inJustDecodeBounds=true
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds=true;
 
-            int bitmapWidth=bmOptions.outWidth;
-            int bitmapHeight=bmOptions.outHeight;
+            int bitmapWidth=1024;
+            int bitmapHeight=1024;
 
             //The sample size is the number of pixels in either dimension that correspond to a single pixel in the decoded bitmap.
             // For example, inSampleSize == 4 returns an image that is 1/4 the width/height of the original
@@ -409,10 +409,37 @@ public class uploadPhoto extends AppCompatActivity
             bmOptions.inJustDecodeBounds=false;
 
             Bitmap bmpImage = BitmapFactory.decodeFile(imageFilePath,bmOptions);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(imageFilePath,bmOptions));
 
+            // Images are being saved in landscape, so rotate them back to portrait if they were taken in portrait
+            Matrix mtx = new Matrix();
+            ExifInterface exif = null;
+            try
+            {
+                exif = new ExifInterface(imageFilePath);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    bmpImage= rotateImage(bmpImage, 90);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    bmpImage= rotateImage(bmpImage, 180);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    bmpImage= rotateImage(bmpImage, 270);
+                    break;
+                default:
+                    bmpImage= bmpImage;
+                    break;
+            }
+
+            imageView.setImageBitmap(bmpImage);
             imageTaken=true;
-
             if (isExternalStorageWritable())
             {
                 System.out.print("saving image");
@@ -425,6 +452,16 @@ public class uploadPhoto extends AppCompatActivity
                 //prompt the user or do something
             }
         }
+    }
+
+
+    private static Bitmap rotateImage(Bitmap img, int degree)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
     }
 
     private void saveImage(Bitmap  finalBitmap) {
