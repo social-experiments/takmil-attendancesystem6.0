@@ -19,6 +19,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -56,10 +58,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.InvalidKeyException;
 import java.text.SimpleDateFormat;
@@ -246,9 +251,44 @@ public class uploadPhoto extends AppCompatActivity
     }
 
 
-    public boolean isNetworkAvailable(Context context) {
+    public boolean isNetworkAvailable(Context context)
+    {
+        final String TAG="MyActivity";
+        Boolean success=false;
+
         ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+        Boolean state=connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+
+       /* Network network;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            network = connectivityManager.getActiveNetwork();
+        } else
+            return true;
+        NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+        return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED); */
+
+        if (state==true)
+        {
+
+            Runtime runtime = Runtime.getRuntime();
+            try
+            {
+                Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+                int  exitValue = ipProcess.waitFor();
+                return (exitValue == 0);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            return false;
+        }
+        return success;
+
     }
 
 
