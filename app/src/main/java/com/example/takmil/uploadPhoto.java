@@ -74,9 +74,9 @@ import java.util.Locale;
 
 public class uploadPhoto extends AppCompatActivity
 {
-    //key for Azure blob storage
-    public static final String storageConnectionString =
-            "DefaultEndpointsProtocol=https;AccountName=yadavsrorageaccount01;AccountKey=PBotd4hx3Z1o3VOYDvohsAhKpypGKp8c5GwdOgge0gQZGEtlFvkbdTIVoPjhw0Dm7QUD/Gc/PwlI4DE1P9yfhg==;EndpointSuffix=core.windows.net";
+
+
+    //public  final String storageConnectionString = getResources().getString(R.string.connectionstring);
 
 
     private ImageView imageView;
@@ -560,7 +560,7 @@ public class uploadPhoto extends AppCompatActivity
             URI photoUri = null;
             try {
                 // Parse the connection string and create a blob client to interact with Blob storage
-                CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
+                CloudStorageAccount storageAccount = CloudStorageAccount.parse(getResources().getString(R.string.connectionstring));
                 CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
                 CloudBlobContainer container = blobClient.getContainerReference("takmilphoto");
 
@@ -635,7 +635,7 @@ public class uploadPhoto extends AppCompatActivity
 
                 URI photoUri = uploadPhoto();
                 // Parse the connection string and create a blob client to interact with Blob storage
-                storageAccount = CloudStorageAccount.parse(storageConnectionString);
+                storageAccount = CloudStorageAccount.parse(getResources().getString(R.string.connectionstring));
                 blobClient = storageAccount.createCloudBlobClient();
                 container = blobClient.getContainerReference("takmil");
 
@@ -650,7 +650,7 @@ public class uploadPhoto extends AppCompatActivity
                 //define the json. TODO: implement real latlong
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("location", areaStr);
-                jsonObject.put("latlong", locationLatitude + "\n" + locationLongitude);
+                jsonObject.put("latlong", locationLatitude +","+ "\n" + locationLongitude);
                 jsonObject.put("schoolName", schoolName);
                 jsonObject.put("className", className);
                 jsonObject.put("teacherName", teacherName);
