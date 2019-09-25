@@ -19,7 +19,7 @@
 
         The App's APK is stored inside the cloud and can be downloaded from the below link 
 
-        http://bit.ly/TakmilApp
+        http://bit.ly/TakmilApk
 
 ## 3.App Requirements:<br/>
 
@@ -48,7 +48,7 @@
     Step 1:    
         Please click the app's download link and download the app.
 
-        http://bit.ly/TakmilApp
+        http://bit.ly/TakmilApk
 
     Step 2:
         After clicking the link , press INSTALL Button 
