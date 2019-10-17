@@ -72,6 +72,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import id.zelory.compressor.Compressor;
+
 public class uploadPhoto extends AppCompatActivity
 {
 
@@ -84,7 +86,7 @@ public class uploadPhoto extends AppCompatActivity
     Bitmap photo;
     Geocoder geocoder;
     List<Address> addressList;
-    
+
     AppLocationService appLocationService;
     Location ntkLocation;
     Location gpsLocation;
@@ -246,7 +248,7 @@ public class uploadPhoto extends AppCompatActivity
         }
         else
         {
-           showSettingsAlert("GPS");
+            showSettingsAlert("GPS");
         }
     }
 
@@ -486,9 +488,9 @@ public class uploadPhoto extends AppCompatActivity
                 saveImage(bmpImage);
             }
             else
-                {
-                    toast = Toast.makeText(getApplicationContext(), "Not Able to save", Toast.LENGTH_LONG);
-                    toast.show();
+            {
+                toast = Toast.makeText(getApplicationContext(), "Not Able to save", Toast.LENGTH_LONG);
+                toast.show();
                 //prompt the user or do something
             }
         }
@@ -533,6 +535,12 @@ public class uploadPhoto extends AppCompatActivity
             e.printStackTrace();
         }
 
+        try {
+            photoFile = new Compressor(this).compressToFile(photoFile);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /* Checks if external storage is available for read and write */
@@ -595,7 +603,8 @@ public class uploadPhoto extends AppCompatActivity
                 /*// Download blob. In most cases, you would have to retrieve the reference
                 // to cloudBlockBlob here. However, we created that reference earlier, and
                 // haven't changed the blob we're interested in, so we can reuse it.
-                // Here we are creating a new file to download to. Alternatively you can also pass in the path as a string into downloadToFile method: blob.downloadToFile("/path/to/new/file").
+                // Here we are creating a new file to download to. Alternatively you can also pass in the path as a
+                // string into downloadToFile method: blob.downloadToFile("/path/to/new/file").
                 File downloadedFile = new File(sourceFile.getParentFile(), "downloadedFile.txt");
                 blob.downloadToFile(downloadedFile.getAbsolutePath());*/
             } catch (StorageException ex) {

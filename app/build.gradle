@@ -29,4 +29,6 @@ dependencies {
     implementation 'com.microsoft.azure.android:azure-storage-android:2.0.0@aar'
     implementation files('libs/jackson-core-2.9.8.jar')
 
+    // Image compressor
+    implementation 'id.zelory:compressor:2.1.0'
 }
