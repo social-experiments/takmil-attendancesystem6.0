@@ -43,7 +43,13 @@
         * Your phone should have a camera in it.
 
 
-## 4.App Installation:<br/>
+## 4.Connect to blob
+
+        * You must provide a connection string to your Azure blob to use this app.
+          Add your connection string in the tag named "Connection String" in
+          app/src/main/res/values/strings.xml.
+
+## 5.App Installation:<br/>
 
     Step 1:    
         Please click the app's download link and download the app.
@@ -90,7 +96,7 @@ Step 4:
 <img src="Image\appicon.png" width="200" height="400">
 
 
-## 5.App Usage:<br/>
+## 6.App Usage:<br/>
 
     Step 1:
         Click the Takmil Icon, the app will open with the info page
