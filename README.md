@@ -47,7 +47,8 @@
 
         * You must provide a connection string to your Azure blob to use this app.
           Add your connection string in the tag named "Connection String" in
-          app/src/main/res/values/strings.xml.
+          app/src/main/res/values/strings.xml. For more information about
+          connection strings, see [here](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string).
 
 ## 5.App Installation:<br/>
 
