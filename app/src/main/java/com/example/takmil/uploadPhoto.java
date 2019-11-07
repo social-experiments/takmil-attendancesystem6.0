@@ -255,6 +255,9 @@ public class uploadPhoto extends AppCompatActivity
 
     public boolean isNetworkAvailable(Context context)
     {
+        /* if(true) {
+            return true;
+        }*/
         final String TAG="MyActivity";
         Boolean success=false;
 
@@ -271,8 +274,15 @@ public class uploadPhoto extends AppCompatActivity
 
         if (state==true)
         {
+            Log.i("TRUE", "User is connected");
 
-            Runtime runtime = Runtime.getRuntime();
+            CharSequence text = "User is connected";
+            int duration = Toast.LENGTH_SHORT;
+            toast = Toast.makeText(context, text, duration);
+            toast.show();
+            success = true;
+
+/*            Runtime runtime = Runtime.getRuntime();
             try
             {
                 Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
@@ -287,7 +297,14 @@ public class uploadPhoto extends AppCompatActivity
             {
                 e.printStackTrace();
             }
-            return false;
+            return false; */
+        } else {
+            Log.i("TRUE", "User is NOT connected");
+
+            CharSequence text = "User not connected";
+            int duration = Toast.LENGTH_SHORT;
+            toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
         return success;
 
