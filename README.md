@@ -43,12 +43,13 @@
         * Your phone should have a camera in it.
 
 
-## 4.Connect to blob
+## 4.Connect to blob <br/>
 
-        * You must provide a connection string to your Azure blob to use this app.
-          Add your connection string in the tag named "Connection String" in
-          app/src/main/res/values/strings.xml. For more information about
-          connection strings, see [here.](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string)
+        * You must provide a connection string to your Azure blob to use
+        this app. Add your connection string in the tag named "Connection
+        String" in app/src/main/res/values/strings.xml. For more information
+        about connection strings, see
+        https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string
 
 ## 5.App Installation:<br/>
 
